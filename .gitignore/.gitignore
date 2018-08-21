@@ -1,0 +1,60 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+
+using namespace std;
+class pan{
+int value;
+pan *next;
+public:
+pan *addnode();
+void shownode(pan *);
+void deletenode(pan *);
+};
+pan *pan::addnode()
+{
+pan *node=new pan();
+node->next=NULL;
+node->value=0;
+for(int i=1; i<5; i++)
+{
+pan *newnode=new pan();
+newnode->next=node;
+node=newnode;
+newnode->value=i;
+}
+return node;
+}
+void pan::shownode(pan *ref)
+{
+pan *temp=ref;
+while (temp!=NULL)
+{
+cout<<temp->value<<"->";
+temp=temp->next;
+}
+}
+void pan::deletenode(pan *ref)
+{
+pan *temp=ref;
+pan *temp1=temp->next;
+temp->next=temp1->next;
+delete temp1;
+temp1=NULL;
+}
+int main()
+{
+  pan p;
+  pan *temp=p.addnode();
+ p.shownode(temp);
+  p.deletenode(temp);
+  cout<<"\n";
+  p.shownode(temp);
+    return 0;
+}
